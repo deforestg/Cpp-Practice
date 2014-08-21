@@ -14,20 +14,22 @@ using namespace std;
 #define INITIAL_SIZE 100
 #define MAXIMUM_LOAD_FACTOR 0.5f
 
-template<class T> struct bucket {
+template<typename Type>
+struct bucket {
 	std::string key;
-    T value;
+	Type value;
 };
 
-template <class Type> class HashTable {
+template <typename Type>
+class HashTable {
 	private:
 		bucket<Type>* container;
 		int length;
-		int hash(std::string key);
+		unsigned int hash(const std::string& key);
 	public:
 		HashTable();
-		Type get(std::string key);
-		void set(std::string key, Type value);
+		Type get(const std::string&);
+		void set(const std::string& key, Type value);
 };
 
 #endif /* HASHTABLE_H_ */

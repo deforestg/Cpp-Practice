@@ -11,5 +11,10 @@
 using namespace std;
 
 int main() {
+	HashTable<int> table;
+	table.set("test", 1);
+	table.set("test2", 2);
+	std::cout << table.get("test1") << std::endl;
+	std::cout << table.get("test2") << std::endl;
 	return 0;
 }
