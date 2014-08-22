@@ -19,7 +19,8 @@ int main() {
 		std::string key(std::string("test ") + std::string(&i));
 		table.set(key, i);
 
-		std::cout << key << std::endl;
+		int val = table.get(key);
+		std::cout << key << ": " << val << std::endl;
 	}
 	return 0;
 }

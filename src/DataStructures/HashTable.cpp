@@ -18,14 +18,19 @@ template <typename Type>
 Type HashTable<Type>::get(const std::string& key)
 {
 	unsigned int index = hash(key);
-	bucket<Type> contents = container[index];
+	if (container[index].key.compare(key) == 0) {
+		return container[index].value;
+	}
 
-	while (container[index].value != NULL) {
-		if (contents.key.compare(key) == 0) {
-			return contents.value;
+	int stopIndex = index++;
+	while (stopIndex != index && container[index].value != NULL) {
+		if (container[index].key.compare(key) == 0) {
+			return container[index].value;
 		}
 
-		index++;
+		if (++index >= length) {	//loop around
+			index = 0;
+		}
 	}
 
 	return 0;
@@ -36,8 +41,12 @@ template <typename Type>
 void HashTable<Type>::set(const std::string& key, Type value)
 {
 	unsigned int index = hash(key);
-	while (container[index].value != NULL) {
-		index++;
+
+	int stopIndex = index - 1;
+	while (stopIndex != index && container[index].value != NULL) {
+		if (++index >= length) {	//loop around
+			index = 0;
+		}
 	}
 
 	bucket<Type> contents;
