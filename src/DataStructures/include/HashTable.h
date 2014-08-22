@@ -11,7 +11,7 @@ using namespace std;
 #ifndef HASHTABLE_H_
 #define HASHTABLE_H_
 
-#define INITIAL_SIZE 100
+#define INITIAL_SIZE 10
 #define MAXIMUM_LOAD_FACTOR 0.5f
 
 template<typename Type>

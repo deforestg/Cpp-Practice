@@ -8,13 +8,18 @@
 
 #include "DataStructures/include/HashTable.h"
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 using namespace std;
 
 int main() {
 	HashTable<int> table;
-	table.set("test", 1);
-	table.set("test2", 2);
-	std::cout << table.get("test1") << std::endl;
-	std::cout << table.get("test2") << std::endl;
+	for (char i = 48; i < 58; i++) {	//ascii 0
+
+		std::string key(std::string("test ") + std::string(&i));
+		table.set(key, i);
+
+		std::cout << key << std::endl;
+	}
 	return 0;
 }
