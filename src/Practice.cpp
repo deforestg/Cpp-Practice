@@ -7,20 +7,29 @@
 //============================================================================
 
 #include "DataStructures/include/HashTable.h"
+#include "Algorithms/include/MergeSort.h"
+#include "Algorithms/include/QuickSort.h"
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 using namespace std;
 
-int main() {
+void testHashTable()
+{
 	HashTable<int> table;
 	for (char i = 48; i < 58; i++) {	//ascii 0
-
-		std::string key(std::string("test ") + std::string(&i));
+		string key(string("test ") + string(&i));
 		table.set(key, i);
 
 		int val = table.get(key);
-		std::cout << key << ": " << val << std::endl;
+		cout << key << ": " << val << endl;
 	}
+}
+
+int main() {
+	int test[] = {5, 3, 4, 1, 2};
+	int test2[] = {5, 3, 4, 1, 2};
+	MergeSort::sort(test, (int)(sizeof(test)/sizeof(int)));
+	QuickSort::sort(test2, (int)(sizeof(test2)/sizeof(int)));
 	return 0;
 }
