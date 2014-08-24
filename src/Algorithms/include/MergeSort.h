@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+
 using namespace std;
 
 #ifndef MERGESORT_H_
@@ -13,9 +14,13 @@ using namespace std;
 
 class MergeSort {
 	private:
+		template <typename Type>
+		static Type* merge(Type* left, int length1, Type* right, int length2);
+		template <typename Type>
+		static Type** split(Type* part, int mid);
 	public:
 		template <typename Type>
-		static void sort(Type* unsorted, int length);
+		static void sort(Type** unsorted, int length);
 };
 
 #endif /* MERGESORT_H_ */
