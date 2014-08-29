@@ -41,6 +41,7 @@ int main() {
 		test[i] = rand() % testLen;
 		test2[i] = test[i];
 	}
+	std::vector<int> myvector (test2, test2+testLen);
 
     timeval time;
     gettimeofday(&time, NULL);
@@ -56,7 +57,6 @@ int main() {
     gettimeofday(&time, NULL);
     start = time.tv_sec + (time.tv_usec/1000000.0);
 
-	std::vector<int> myvector (test2, test2+testLen);
 	std::sort (myvector.begin(), myvector.end());
 
     gettimeofday(&time, NULL);
