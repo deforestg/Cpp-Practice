@@ -8,8 +8,10 @@
 #include "include/QuickSort.h"
 
 template <typename Type>
-void QuickSort::sort(Type* unsorted, int length)
+void QuickSort::sort(Type** unsorted, int length)
 {
+
 }
 
-template void QuickSort::sort(int*, int);
+template void QuickSort::sort(int**, int);
+template int QuickSort::partition(int**, int);

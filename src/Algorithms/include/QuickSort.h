@@ -10,9 +10,11 @@
 
 class QuickSort {
 	private:
+		template <typename Type>
+		static int partition(Type** part, int length);
 	public:
 		template <typename Type>
-		static void sort(Type* unsorted, int length);
+		static void sort(Type** unsorted, int length);
 };
 
 #endif /* QUICKSORT_H_ */
