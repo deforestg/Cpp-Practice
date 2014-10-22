@@ -8,6 +8,7 @@
 
 #include "DataStructures/include/HashTable.h"
 #include "Algorithms/include/MergeSort.h"
+#include "Algorithms/include/QuickSort.h"
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,48 +31,70 @@ void testHashTable()
 	}
 }
 
-void testCppSort(int testLen)
+void generateRandomData(int* arr, int len)
 {
-	int* test = new int[testLen];
-	for (int i = 0; i < testLen; i++) {
-		test[i] = rand() % testLen;
+	for (int i = 0; i < len; i++) {
+		arr[i] = rand() % len;
 	}
-	std::vector<int> myvector (test, test+testLen);
-
-    timeval time;
-    gettimeofday(&time, NULL);
-    double current, start = time.tv_sec + (time.tv_usec/1000000.0);
-
-	std::sort (myvector.begin(), myvector.end());
-
-    gettimeofday(&time, NULL);
-    current = time.tv_sec + (time.tv_usec/1000000.0);
-	std::cout << "C++ sorted " << testLen << " items in " << current - start << " seconds" << endl;
 }
 
-void testMergeSort(int testLen)
+void copyData(int* src, int* dest, int len)
 {
-	int* test = new int[testLen];
-	for (int i = 0; i < testLen; i++) {
-		test[i] = rand() % testLen;
+	for (int i = 0; i < len; i++) {
+		dest[i] = src[i];
 	}
+}
 
+void testSorts(int testLen)
+{
     timeval time;
+    double current, start;
+    int *test, *test2, *test3;
+    test = new int[testLen];
+    test2 = new int[testLen];
+    test3 = new int[testLen];
+
+    generateRandomData(test, testLen);
+    copyData(test, test2, testLen);
+    copyData(test, test3, testLen);
+
+    // my mergesort
     gettimeofday(&time, NULL);
-    double current, start = time.tv_sec + (time.tv_usec/1000000.0);
+    start = time.tv_sec + (time.tv_usec/1000000.0);
 
 	MergeSort::sort(&test, testLen);
 
     gettimeofday(&time, NULL);
     current = time.tv_sec + (time.tv_usec/1000000.0);
 	std::cout << "Merge sorted " << testLen << " items in " << current - start << " seconds" << endl;
+
+	// my quicksort
+    gettimeofday(&time, NULL);
+    start = time.tv_sec + (time.tv_usec/1000000.0);
+
+	QuickSort::sort(&test2, testLen);
+
+    gettimeofday(&time, NULL);
+    current = time.tv_sec + (time.tv_usec/1000000.0);
+	std::cout << "Quick sorted " << testLen << " items in " << current - start << " seconds" << endl;
+
+	// cpp sort
+	std::vector<int> myvector (test3, test3+testLen);
+
+    gettimeofday(&time, NULL);
+    start = time.tv_sec + (time.tv_usec/1000000.0);
+
+	std::sort(myvector.begin(), myvector.end());
+
+    gettimeofday(&time, NULL);
+    current = time.tv_sec + (time.tv_usec/1000000.0);
+	std::cout << "C++ sorted " << testLen << " items in " << current - start << " seconds" << endl;
 }
 
 int main() {
 	srand (time(NULL));
 
-	testMergeSort(1000000);
-	testCppSort(1000000);
+	testSorts(1000000);
 
 	return 0;
 }
